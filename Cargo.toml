@@ -1,0 +1,23 @@
+[package]
+name = "runedsp"
+version = "0.1.0"
+edition = "2021"
+authors = ["ValkyrieSentinel <valkyriesentinel@gmail.com>"]
+description = "High-performance SIMD Synth Engine with Kernel-level eBPF Guard"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+nih_plug = { git = "https://github.com/robbert-vdh/nih-plug.git" }
+atomic_float = "0.1"
+
+[build-dependencies]
+cc = "1.0"
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+panic = "abort"
+strip = true
